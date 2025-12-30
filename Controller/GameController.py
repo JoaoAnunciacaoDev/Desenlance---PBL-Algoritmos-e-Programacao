@@ -62,11 +62,14 @@ class GameController:
                 self.state_input["cursor"] -= 1                
 
                 self.view.game_view.update_grid_letter(line, old_cursor, "", selected = False)
-                self.view.game_view.update_grid_letter(line, new_cursor, "", selected = True)
+                self.view.game_view.update_grid_letter(line, new_cursor, None, selected = True)
 
         elif event.keysym == "Return":
             if "" not in self.state_input["current_word"]:
                 self._handler_send_attempt()
+                if line < 5:
+                    self.view.game_view.update_grid_letter(line + 1, 0, "", selected = True)
+
             else:
                 self.view.game_view.update_status(
                     "A palavra deve ter 5 letras!", "yellow"
