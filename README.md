@@ -1,4 +1,4 @@
-# Desenlance - PBL Algoritmos e Programacao
+# Desenlance - PBL Algoritmos e Programacao (JEDI TEMPLE)
 
 Uma implementação desktop do famoso jogo de palavras "Termo" (clone do Wordle), desenvolvida em **Python** utilizando a biblioteca **Tkinter** para a interface gráfica e estruturada no padrão de arquitetura **MVC (Model-View-Controller)**.
 
