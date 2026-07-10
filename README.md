@@ -1,16 +1,15 @@
 # Desenlance - PBL Algoritmos e Programação (JEDI TEMPLE)
 
-Uma implementação de mesa (Desktop) moderna e polida do famoso jogo de palavras "Termo" (clone do Wordle), desenvolvida em **Python** utilizando a biblioteca **Tkinter** para a interface gráfica, estruturada no padrão de arquitetura **MVC (Model-View-Controller)** e empacotada com ferramentas de desenvolvimento modernas.
+Uma implementação de mesa (Desktop) do famoso jogo de palavras "Termo" (clone do Wordle), desenvolvida em **Python** utilizando a biblioteca **Tkinter** para a interface gráfica, estruturada no padrão de arquitetura **MVC (Model-View-Controller)** e empacotada com ferramentas de desenvolvimento modernas.
 
 ---
 
 ## 📸 Sobre o Projeto
 
-Este projeto é uma **refatoração e modernização completa** de um trabalho acadêmico realizado originalmente em 2023. O desafio original propunha a criação de um jogo de palavras simples via console (linha de comando). 
+Este projeto é uma **refatoração e modernização completa** de um trabalho acadêmico realizado originalmente em 2023. O desafio original propunha a criação de um jogo de palavras simples via terminal. 
 
 A versão atual (**Desenlance**) eleva a arquitetura técnica e o visual do projeto ao implementar:
-* **Interface Gráfica Premium (GUI):** Visual escuro moderno (Dark Mode) inspirado no Wordle, com fontes elegantes baseadas no *Segoe UI* e layouts fluidos.
-* **Process DPI Awareness:** Renderização em alta definição para evitar fontes embaçadas ou pixeladas no Windows.
+* **Interface Gráfica Premium (GUI):** Visual escuro moderno (Dark Mode) inspirado no Wordle com layouts fluidos.
 * **Padrão MVC Limpo:** Separação estrita entre a lógica de pontuações e palavras (Model), telas e componentes (View) e tratamento unificado de eventos de clique e digitação (Controller).
 * **Organização Orientada a Objetos:** Modularização completa facilitando manutenções e extensões.
 
@@ -28,7 +27,7 @@ A versão atual (**Desenlance**) eleva a arquitetura técnica e o visual do proj
   - **Reveal Sequencial:** Cores de acerto reveladas letra por letra a cada 180ms.
   - **Jitter Shake (Vibração):** Vibração rápida de 10px em alta frequência (25ms) ao digitar palavras inválidas, com uma flag de estado `is_shaking` para evitar conflito com as rotinas de layout do Tkinter.
   - **Bloqueio de Teclas:** O usuário é impedido de digitar enquanto as animações de revelação estão ocorrendo.
-* **Banco de Palavras Offline Robusto:** Fusão com a base oficial de palavras do jogo Termo em português, contendo **6.072 palavras de 5 letras únicas**, limpas e normalizadas em `words.txt`.
+* **Banco de Palavras:** Fusão com a base oficial de palavras do jogo Termo em português, contendo **6.072 palavras de 5 letras únicas**, limpas e normalizadas em `words.txt`.
 
 ---
 
