@@ -98,3 +98,15 @@ mise run lint
 # Formata os arquivos do projeto automaticamente
 mise run format
 ```
+
+### 4. Compilar para Executável Standalone (.exe)
+Para gerar um único arquivo executável nativo do Windows (que funciona de forma totalmente autônoma, sem precisar do Python ou de dependências locais instaladas nas máquinas dos usuários):
+```bash
+# Usando o atalho do Mise:
+mise run build
+
+# Ou executando o PyInstaller diretamente pelo Poetry:
+poetry run pyinstaller --onefile --windowed --add-data "words.txt;." main.py
+```
+O executável compilado contendo a base de dados embutida será gerado na pasta `dist/main.exe`.
+Você pode pegar esse arquivo `.exe` e disponibilizá-lo diretamente como um asset na aba **Releases** do seu repositório GitHub para que outras pessoas baixem e joguem imediatamente!

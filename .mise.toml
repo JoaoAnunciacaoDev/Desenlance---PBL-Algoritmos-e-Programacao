@@ -16,3 +16,7 @@ run = "poetry run ruff check --fix"
 [tasks.format]
 description = "Formatar o codigo com Ruff"
 run = "poetry run ruff format"
+
+[tasks.build]
+description = "Compilar o jogo para executável standalone (.exe)"
+run = "poetry run pyinstaller --onefile --windowed --add-data \"words.txt;.\" main.py"
