@@ -1,20 +1,8 @@
-LETTER_STATUS : dict[str, str] = {
-    "CORRECT": "correct",
-    "WRONG_PLACE": "wrong_place",
-    "WRONG": "wrong"
-    }
+LETTER_STATUS: dict[str, str] = {"CORRECT": "correct", "WRONG_PLACE": "wrong_place", "WRONG": "wrong"}
 
-ROUND_STATUS : dict[str, str] = {
-    "PLAYING": "playing",
-    "WIN": "win",
-    "LOSE": "lose"
-}
+ROUND_STATUS: dict[str, str] = {"PLAYING": "playing", "WIN": "win", "LOSE": "lose"}
 
-GERAL_STATUS : dict[str, str] = {
-    "MENU": "menu",
-    "PLAYING": "playing",
-    "END": "end"
-}
+GERAL_STATUS: dict[str, str] = {"MENU": "menu", "PLAYING": "playing", "END": "end"}
 
 COLOR_BACKGROUND = "#121213"
 COLOR_LETTER = "#FFFFFF"
@@ -27,7 +15,17 @@ COLOR_WRONG = "#3A3A3C"
 
 COLOR_CURSOR = "#36628F"
 
-FONT_GRID = ("Helvetica", 32, "bold")
-FONT_KEYBOARD = ("Helvetica", 14)
-FONT_STATUS = ("Helvetica", 12)
-FONT_TITLE = ("Helvetica", 24, "bold")
+COLOR_CARD = "#1A1A1B"
+COLOR_BUTTON_DEFAULT = "#818384"
+COLOR_ACCENT = "#538D4E"
+COLOR_ACCENT_HOVER = "#6AAA64"
+COLOR_TEXT_MUTED = "#787C7E"
+
+FONT_GRID = ("Segoe UI", 28, "bold")
+FONT_KEYBOARD = ("Segoe UI", 11, "bold")
+FONT_STATUS = ("Segoe UI", 11)
+FONT_TITLE = ("Segoe UI", 24, "bold")
+FONT_MENU_TITLE = ("Segoe UI", 36, "bold")
+FONT_SUBTITLE = ("Segoe UI", 12)
+FONT_BUTTON = ("Segoe UI", 12, "bold")
+FONT_LABEL = ("Segoe UI", 10, "bold")

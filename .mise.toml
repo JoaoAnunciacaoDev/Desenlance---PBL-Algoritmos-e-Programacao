@@ -1,0 +1,18 @@
+[tools]
+python = "3.13.9"
+
+[tasks.run]
+description = "Rodar o jogo Desenlance"
+run = "poetry run python main.py"
+
+[tasks.lint]
+description = "Executar analise estatica com Ruff"
+run = "poetry run ruff check"
+
+[tasks.fix]
+description = "Corrigir erros automaticos de linting com Ruff"
+run = "poetry run ruff check --fix"
+
+[tasks.format]
+description = "Formatar o codigo com Ruff"
+run = "poetry run ruff format"
