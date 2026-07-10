@@ -151,6 +151,7 @@ if __name__ == "__main__":
         print(f"Rodada {game.played_rounds} de {game.total_rounds}")
         print(f"Jogador da vez: {game.get_current_player_name()}")
 
+        assert game.round_manager is not None
         palavra_secreta_r1 = "".join(game.round_manager.secret_word)
         print(f"Palavra secreta da Rodada 1: {palavra_secreta_r1}")
 

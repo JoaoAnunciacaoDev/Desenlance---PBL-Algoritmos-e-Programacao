@@ -86,29 +86,30 @@ class ResultModal(tk.Frame):
 class GameView(tk.Frame):
     color_map: dict[str, str]
     grid_labels: list[list[tk.Label]]
-    label_score_p1: tk.Label | None
-    label_score_p2: tk.Label | None
-    label_match: tk.Label | None
-    label_status: tk.Label | None
+    label_score_p1: tk.Label
+    label_score_p2: tk.Label
+    label_match: tk.Label
+    label_status: tk.Label
 
-    frame_placar: tk.Frame | None
-    frame_grid: tk.Frame | None
-    frame_keyboard: tk.Frame | None
+    frame_placar: tk.Frame
+    frame_grid: tk.Frame
+    frame_keyboard: tk.Frame
 
-    frame_historico_p1: tk.Frame | None
-    frame_historico_p2: tk.Frame | None
-    lbl_hist_p1: tk.Label | None
-    lbl_hist_p2: tk.Label | None
-    listbox_hist_p1: tk.Listbox | None
-    listbox_hist_p2: tk.Listbox | None
+    frame_historico_p1: tk.Frame
+    frame_historico_p2: tk.Frame
+    lbl_hist_p1: tk.Label
+    lbl_hist_p2: tk.Label
+    listbox_hist_p1: tk.Listbox
+    listbox_hist_p2: tk.Listbox
 
-    frame_corpo: tk.Frame | None
-    grid_container: tk.Frame | None
-    grid_canvas: tk.Canvas | None
-    grid_scrollbar: tk.Scrollbar | None
-    canvas_window: int | None
+    frame_corpo: tk.Frame
+    grid_container: tk.Frame
+    grid_canvas: tk.Canvas
+    grid_scrollbar: tk.Scrollbar
+    canvas_window: int
 
     keyboard_buttons: dict[str, tk.Button]
+    keyboard_key_colors: dict[str, str]
     active_modal: ResultModal | None
     virtual_key_handler: typing.Callable | None
     is_shaking: bool
@@ -123,29 +124,9 @@ class GameView(tk.Frame):
         }
 
         self.grid_labels = []
-        self.label_score_p1 = None
-        self.label_score_p2 = None
-        self.label_match = None
-        self.label_status = None
-
-        self.frame_placar = None
-        self.frame_grid = None
-        self.frame_keyboard = None
-
-        self.frame_historico_p1 = None
-        self.frame_historico_p2 = None
-        self.lbl_hist_p1 = None
-        self.lbl_hist_p2 = None
-        self.listbox_hist_p1 = None
-        self.listbox_hist_p2 = None
-
-        self.frame_corpo = None
-        self.grid_container = None
-        self.grid_canvas = None
-        self.grid_scrollbar = None
-        self.canvas_window = None
 
         self.keyboard_buttons = {}
+        self.keyboard_key_colors = {}
         self.active_modal = None
         self.virtual_key_handler = None
         self.is_shaking = False
@@ -215,6 +196,7 @@ class GameView(tk.Frame):
                 )
                 btn.grid(row=0, column=c_idx, padx=2, sticky="nsew")
                 self.keyboard_buttons[key] = btn
+                self.keyboard_key_colors[key] = COLOR_BUTTON_DEFAULT
                 self._bind_keyboard_hover(btn)
 
         self.label_status = tk.Label(
@@ -365,7 +347,7 @@ class GameView(tk.Frame):
             self.virtual_key_handler(key)
 
     def _bind_keyboard_hover(self, btn):
-        btn.base_color = btn.cget("bg")
+        key = btn.cget("text")
 
         def on_enter(e):
             hover_colors = {
@@ -374,11 +356,11 @@ class GameView(tk.Frame):
                 COLOR_WRONG_PLACE: "#C5AF4B",
                 COLOR_WRONG: "#4E4E50",
             }
-            current_base = getattr(btn, "base_color", COLOR_BUTTON_DEFAULT)
+            current_base = self.keyboard_key_colors.get(key, COLOR_BUTTON_DEFAULT)
             btn.config(bg=hover_colors.get(current_base, current_base))
 
         def on_leave(e):
-            current_base = getattr(btn, "base_color", COLOR_BUTTON_DEFAULT)
+            current_base = self.keyboard_key_colors.get(key, COLOR_BUTTON_DEFAULT)
             btn.config(bg=current_base)
 
         btn.bind("<Enter>", on_enter)
@@ -388,12 +370,12 @@ class GameView(tk.Frame):
         if self.label_status:
             self.label_status.config(text=text_status, fg=color)
 
-    def update_grid_letter(self, line: int, column: int, letter: str = None, selected: bool = False):
+    def update_grid_letter(self, line: int, column: int, letter: str | None = None, selected: bool = False):
         if 0 <= line < 6 and 0 <= column < 5:
             lbl = self.grid_labels[line][column]
 
             if letter is None:
-                letter = lbl.cget("text")
+                letter = str(lbl.cget("text"))
 
             bg_color = COLOR_CURSOR if selected else COLOR_BACKGROUND
             border_color = COLOR_BORDER_ON if (selected or (letter != "")) else COLOR_BORDER_OFF
@@ -406,7 +388,7 @@ class GameView(tk.Frame):
             btn = self.keyboard_buttons[key]
             target_color = self.color_map.get(logic_status, COLOR_WRONG)
 
-            current_base = getattr(btn, "base_color", COLOR_BUTTON_DEFAULT)
+            current_base = self.keyboard_key_colors.get(key, COLOR_BUTTON_DEFAULT)
 
             should_update = False
             if current_base == COLOR_BUTTON_DEFAULT:
@@ -417,12 +399,12 @@ class GameView(tk.Frame):
                 should_update = True
 
             if should_update:
-                btn.base_color = target_color
+                self.keyboard_key_colors[key] = target_color
                 btn.config(bg=target_color)
 
     def reset_keyboard_colors(self):
-        for btn in self.keyboard_buttons.values():
-            btn.base_color = COLOR_BUTTON_DEFAULT
+        for key, btn in self.keyboard_buttons.items():
+            self.keyboard_key_colors[key] = COLOR_BUTTON_DEFAULT
             btn.config(bg=COLOR_BUTTON_DEFAULT)
 
     def animate_row_reveal(self, line: int, result_letters: list, index: int = 0, callback=None):
